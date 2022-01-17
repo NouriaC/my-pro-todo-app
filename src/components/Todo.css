@@ -1,0 +1,48 @@
+.todo-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.2rem;
+  background: linear-gradient(315deg, #fad0c4 0%, #f1a7f1 74%);
+  margin: 1rem auto;
+  width: 80%;
+  border-radius: 0.8rem;
+}
+
+.todo-container:nth-child(4n + 1) {
+  background: linear-gradient(90deg, #d5adc8 0%, #ff8489 74%);
+}
+
+.todo-container:nth-child(4n + 2) {
+  background: linear-gradient(315deg, #ffd9de 0%, #e99ba6 74%);
+}
+
+.todo-container:nth-child(4n + 3) {
+  background: linear-gradient(90deg, #ebbe9b 0%, #e7a977 74%);
+}
+
+.todo-content {
+  font-size: 1.2rem;
+  letter-spacing: var(--mainSpacing);
+  text-transform: capitalize;
+}
+
+.todo-buttons {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.btn-check {
+  margin-right: 0.5rem;
+  color: green;
+}
+
+.btn-delete {
+  color: red;
+}
+
+.complete {
+  text-decoration: line-through;
+  opacity: 0.4;
+}
