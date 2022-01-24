@@ -1,6 +1,7 @@
 :root {
   --primaryColor: #b797c4;
   --secondaryColor: #e5bdf6;
+  --btnColor: #eedad1;
   --mainBlack: #222;
   --mainWhite: #fff;
   --offWhite: #faf9f6;
@@ -62,7 +63,8 @@ p {
 }
 
 .todo-input,
-.todo-button {
+.todo-button,
+.submit-button {
   padding: 0.75rem 0.7rem;
   outline: none;
   border: transparent;
@@ -72,18 +74,23 @@ p {
 }
 .todo-input {
   border-radius: 4px 0 0 4px;
-  width: 320px;
+  width: 340px;
   background: var(--secondaryColor);
   /* color: var(--offWhite); */
 }
 
-.todo-button {
+.todo-button,
+.submit-button {
   border-radius: 0 4px 4px 0;
   margin-left: 0.5rem;
-  background: var(--darkGrey);
+  background: var(--btnColor);
   color: var(--mainBlack);
   transition: var(--mainTransition);
   cursor: pointer;
+}
+
+.submit-button {
+  margin-left: 0;
 }
 
 .todo-button:hover {

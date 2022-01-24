@@ -6,24 +6,14 @@ import React, { useState } from 'react';
 function App() {
   const [text, setText] = useState('');
   const [todos, setTodos] = useState([]);
-  const [isEditing, setIsEditing] = useState(false);
-  const [editID, setEditID] = useState(null);
+  const [todoEditing, setTodoEditing] = useState(null);
+  const [editingText, setEditingText] = useState('');
 
    const handleSubmit = (e) => {
         e.preventDefault();
         if(!text || /^\s*$/.test(text)) {
             return 
-        } else if (text & isEditing) {
-             setTodos(todos.map(todo => {
-                 if(todo.id === editID) {
-                     return {...todo, title: text}
-                 }
-                 return todo
-             }))
-             setText('');
-             setEditID(null);
-             setIsEditing(false);
-         } else {
+        } else {
         const newTodo = { title: text, completed: false, id: generateId() }
         setTodos([...todos, newTodo])
         setText('');
@@ -36,10 +26,15 @@ function App() {
     }
 
    const handleEdit = (id) => {
-        const editedTodo = todos.find(todo => todo.id === id);
-        setIsEditing(true);
-        setEditID(id);
-        setText(editedTodo.title);
+        const editedTodo = [...todos].map(todo => {
+            if(todo.id === id) {
+                todo.title = editingText
+            }
+            return todo;
+        })
+        setEditingText(editedTodo);
+        setTodoEditing(null);
+        setEditingText('');
     }
 
     const handleComplete = (id) => {
@@ -63,14 +58,17 @@ function App() {
              onChange={(e)=> setText(e.target.value)}
              value={text}
             />
-            <button type="submit" className="todo-button">
-                {isEditing ? 'Edit' : 'Add Todo'}</button>
+            <button type="submit" className="todo-button">add todo</button>
         </form>
        <TodoList 
        todos={todos}
        handleDelete={handleDelete}
        handleEdit={handleEdit}
-       handleComplete={handleComplete}/>
+       handleComplete={handleComplete}
+       todoEditing={todoEditing}
+       setTodoEditing={setTodoEditing}
+       setEditingText={setEditingText}
+       editingText={editingText}/>
     </div>
   );
 }
